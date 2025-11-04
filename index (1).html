@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I love you Tommy 💞</title>
+  <style>
+    body {
+      background: radial-gradient(circle at center, #0a0a1a, #000);
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Trebuchet MS', Arial, sans-serif;
+      overflow: hidden;
+    }
+    button {
+      background: linear-gradient(45deg, #ff66b2, #ffcc99);
+      border: none;
+      border-radius: 12px;
+      padding: 20px 40px;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+      transition: all 0.3s ease;
+      margin-bottom: 40px;
+      z-index: 2;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 105, 180, 1);
+    }
+    #message {
+      position: relative;
+      font-size: 4rem;
+      color: #ff99cc;
+      font-weight: bold;
+      text-shadow: 0 0 25px #ff66b2, 0 0 50px #ff3399, 0 0 80px #ff0099;
+      opacity: 0;
+      transition: opacity 1.2s ease, transform 0.6s ease;
+      transform: scale(0.5);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: none;
+      z-index: 1;
+      text-align: center;
+    }
+    #message.show {
+      opacity: 1;
+      transform: scale(1.2);
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 25px #ff66b2, 0 0 50px #ff3399, 0 0 80px #ff0099; }
+      50% { text-shadow: 0 0 40px #ff99cc, 0 0 80px #ff66b2, 0 0 120px #ff3399; }
+    }
+    .heart {
+      position: absolute;
+      color: #ff66b2;
+      font-size: 2rem;
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+      text-shadow: 0 0 10px #ff3399;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-800px) scale(1.8); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <button id="loveButton">Click Me 💖</button>
+  <div id="message">I LOVE YOU TOMMY 💞</div>
+
+  <script>
+    const button = document.getElementById('loveButton');
+    const message = document.getElementById('message');
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.bottom = '0px';
+      heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 4000);
+    }
+
+    button.addEventListener('click', () => {
+      message.classList.add('show');
+      if ('speechSynthesis' in window) {
+        const utter = new SpeechSynthesisUtterance('I love you Tommy');
+        utter.pitch = 1.2;
+        utter.rate = 1;
+        window.speechSynthesis.speak(utter);
+      }
+      for (let i = 0; i < 20; i++) {
+        setTimeout(createHeart, i * 200);
+      }
+    });
+  </script>
+</body>
+</html>
