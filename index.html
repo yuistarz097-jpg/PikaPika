@@ -73,7 +73,7 @@
 </head>
 <body>
   <button id="loveButton">Click Me 💖</button>
-  <div id="message">I LOVE YOU TOMMY 💞</div>
+  <div id="message">I LOVE YOU TOMMY TOM 💞</div>
 
   <script>
     const button = document.getElementById('loveButton');
@@ -93,7 +93,7 @@
     button.addEventListener('click', () => {
       message.classList.add('show');
       if ('speechSynthesis' in window) {
-        const utter = new SpeechSynthesisUtterance('I love you Tommy');
+        const utter = new SpeechSynthesisUtterance('I love you Tommy Tom');
         utter.pitch = 1.2;
         utter.rate = 1;
         window.speechSynthesis.speak(utter);
@@ -105,3 +105,4 @@
   </script>
 </body>
 </html>
+Update message to I love you Tommy Tom
